@@ -1,9 +1,9 @@
 // src/pages/HomePage.jsx
-import { Link } from 'react-router-dom';
-import CityCard from '../components/CityCard';
+import CityCard from '../components/cities/CityCard';
 import { useState } from 'react';
-import CountryFilter from '../components/CountryFilter';
-import Spinner from '../components/Spinner';
+import CityFilter from '../components/cities/CityFilter'; // שינוי משם
+import Spinner from '../components/ui/Spinner';
+import { Link } from 'react-router-dom';
 
 export default function HomePage({ cities, loading, dispatch }) {
     const [selectedCountry, setSelectedCountry] = useState('');
@@ -21,7 +21,7 @@ export default function HomePage({ cities, loading, dispatch }) {
         <div className="container mt-4">
             <h1>Favorite Cities</h1>
             <div className="d-flex justify-content-between align-items-center mb-3">
-                <CountryFilter
+                <CityFilter
                     countries={countries}
                     selectedCountry={selectedCountry}
                     onSelect={setSelectedCountry}

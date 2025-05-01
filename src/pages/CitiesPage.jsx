@@ -1,56 +1,92 @@
 // src/pages/CitiesPage.jsx
 import { useState } from 'react';
-import CityForm from '../components/CityForm/CityForm';
-import CityCard from '../components/CityCard';
-import { Link } from 'react-router-dom';
+import { useCities } from '../features/cities/cityHooks';
+import CityForm from '../components/cities/CityForm/CityForm'; // שינוי נתיב
+import CityCard from '../components/cities/CityCard';
+import CityFilter  from '../components/cities/CityFilter'; // שינוי משם CountryFilter ל-CityFilter
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 
 export default function CitiesPage({ cities, dispatch }) {
     const [isAdding, setIsAdding] = useState(false);
+    const [editingCity, setEditingCity] = useState(null);
+    const {
+        addCity,
+        editCity,
+        deleteCity,
+        toggleFavorite,
+        filterByCountry,
+        resetFilter
+    } = useCities(dispatch);
 
-    const handleAddCity = (newCity) => {
-        dispatch({ type: 'ADD_CITY', payload: newCity });
+    // טיפול בהוספת עיר חדשה
+    const handleAdd = (newCity) => {
+        addCity({
+            ...newCity,
+            id: Date.now(), // ID ייחודי
+            isFavorite: false
+        });
         setIsAdding(false);
     };
 
+    // טיפול בעדכון עיר קיימת
+    const handleEdit = (updatedCity) => {
+        editCity(updatedCity);
+        setEditingCity(null);
+    };
+
+    // איסוף רשימת מדינות ייחודית לסינון
+    const countries = [...new Set(cities.map(city => city.country))];
+
     return (
-        <div className="container mt-4">
-            <div className="d-flex justify-content-between align-items-center mb-3">
-                <h1>All Cities</h1>
+        <Container className="mt-4">
+            <h1 className="mb-4">All Cities</h1>
+
+            {/* סרגל פעולות */}
+            <div className="d-flex justify-content-between mb-4">
                 <div>
-                    <button
-                        className="btn btn-primary me-2"
+                    <Button
+                        variant="primary"
                         onClick={() => setIsAdding(true)}
+                        className="me-2"
                     >
                         Add City
-                    </button>
-                    <Link to="/" className="btn btn-outline-secondary">
-                        Back to Favorites
-                    </Link>
+                    </Button>
+                    <CityFilter
+                        countries={countries}
+                        onFilter={filterByCountry}
+                        onReset={resetFilter}
+                    />
                 </div>
             </div>
 
-            {isAdding && (
-                <div className="card mb-4">
-                    <div className="card-body">
-                        <CityForm
-                            onSubmit={handleAddCity}
-                            onCancel={() => setIsAdding(false)}
-                        />
-                    </div>
+            {/* טופס הוספה/עריכה */}
+            {(isAdding || editingCity) && (
+                <div className="card mb-4 p-3">
+                    <CityForm
+                        initialData={editingCity || undefined}
+                        onSubmit={editingCity ? handleEdit : handleAdd}
+                        onCancel={() => {
+                            setIsAdding(false);
+                            setEditingCity(null);
+                        }}
+                    />
                 </div>
             )}
 
+            {/* רשימת הערים */}
             <div className="row">
                 {cities.map(city => (
                     <div key={city.id} className="col-md-4 mb-4">
                         <CityCard
                             city={city}
-                            dispatch={dispatch}
-                            showDelete // הוספת אפשרות מחיקה
+                            onEdit={() => setEditingCity(city)}
+                            onDelete={() => deleteCity(city.id)}
+                            onToggleFavorite={() => toggleFavorite(city.id)}
                         />
                     </div>
                 ))}
             </div>
-        </div>
+        </Container>
     );
 }
