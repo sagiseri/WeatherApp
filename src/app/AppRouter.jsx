@@ -24,7 +24,6 @@ export default function AppRouter({ cities, dispatch, loading }) {
                     <AppLayout />
                 </ErrorBoundary>
             }>
-                {/* דף הבית - ערים מועדפות */}
                 <Route
                     path="/"
                     element={
@@ -38,7 +37,6 @@ export default function AppRouter({ cities, dispatch, loading }) {
                     }
                 />
 
-                {/* ניהול ערים - רשימה מלאה */}
                 <Route
                     path="/cities"
                     element={
@@ -51,7 +49,6 @@ export default function AppRouter({ cities, dispatch, loading }) {
                     }
                 />
 
-                {/* טופס הוספת עיר חדשה */}
                 <Route
                     path="/cities/add"
                     element={
@@ -64,7 +61,6 @@ export default function AppRouter({ cities, dispatch, loading }) {
                     }
                 />
 
-                {/* טופס עריכת עיר קיימת */}
                 <Route
                     path="/cities/edit/:id"
                     element={
@@ -78,7 +74,6 @@ export default function AppRouter({ cities, dispatch, loading }) {
                     }
                 />
 
-                {/* תצוגת מזג אוויר עבור עיר ספציפית */}
                 <Route
                     path="/weather/:cityId"
                     element={
@@ -90,7 +85,6 @@ export default function AppRouter({ cities, dispatch, loading }) {
                     }
                 />
 
-                {/* דף אודות */}
                 <Route
                     path="/about"
                     element={
@@ -100,7 +94,6 @@ export default function AppRouter({ cities, dispatch, loading }) {
                     }
                 />
 
-                {/* ניתוב עבור כתובות לא קיימות */}
                 <Route
                     path="*"
                     element={
