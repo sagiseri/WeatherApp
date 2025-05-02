@@ -1,8 +1,7 @@
 // src/components/ui/Spinner.jsx
-export default function Spinner() {
-    return (
-        <div className="spinner-container">
-            <div className="spinner" aria-label="Loading..." />
-        </div>
-    );
-}
+const Spinner = ({ size = 'md' }) => (
+    <div className={`spinner-border text-primary spinner-${size}`} role="status">
+        <span className="visually-hidden">Loading...</span>
+    </div>
+);
+export default Spinner;

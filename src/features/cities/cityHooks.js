@@ -1,4 +1,3 @@
-// src/features/cities/cityHooks.js
 import {
     addCity as addCityAction,
     updateCity,
@@ -9,7 +8,6 @@ import {
 } from './cityActions';
 
 export const useCities = (dispatch) => {
-    // פעולות ניהול ערים
     const addCity = (cityData) => {
         dispatch(addCityAction(cityData));
     };
@@ -26,7 +24,6 @@ export const useCities = (dispatch) => {
         dispatch(toggleFavoriteCity(id));
     };
 
-    // פעולות סינון
     const filterCitiesByCountry = (country) => {
         dispatch(filterByCountry(country));
     };
@@ -41,6 +38,6 @@ export const useCities = (dispatch) => {
         deleteCity,
         toggleFavorite,
         filterByCountry: filterCitiesByCountry,
-        resetFilter: resetCitiesFilter
+        resetFilter: resetCitiesFilter,
     };
 };

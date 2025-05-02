@@ -1,15 +1,16 @@
-// src/pages/CitiesPage.jsx
 import { useState } from 'react';
-import { useCities } from '../features/cities/cityHooks';
-import CityForm from '../components/cities/CityForm/CityForm'; // שינוי נתיב
+import { Button, Container, Modal } from 'react-bootstrap';
+import CityForm from '../components/cities/CityForm/CityForm';
 import CityCard from '../components/cities/CityCard';
-import CityFilter  from '../components/cities/CityFilter'; // שינוי משם CountryFilter ל-CityFilter
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
+import CityFilter from '../components/cities/CityFilter';
+import { useCities } from '../features/cities/cityHooks';
 
 export default function CitiesPage({ cities, dispatch }) {
     const [isAdding, setIsAdding] = useState(false);
     const [editingCity, setEditingCity] = useState(null);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [cityToDelete, setCityToDelete] = useState(null);
+
     const {
         addCity,
         editCity,
@@ -19,74 +20,96 @@ export default function CitiesPage({ cities, dispatch }) {
         resetFilter
     } = useCities(dispatch);
 
-    // טיפול בהוספת עיר חדשה
     const handleAdd = (newCity) => {
-        addCity({
-            ...newCity,
-            id: Date.now(), // ID ייחודי
-            isFavorite: false
-        });
+        addCity(newCity);
         setIsAdding(false);
     };
 
-    // טיפול בעדכון עיר קיימת
     const handleEdit = (updatedCity) => {
         editCity(updatedCity);
         setEditingCity(null);
     };
 
-    // איסוף רשימת מדינות ייחודית לסינון
-    const countries = [...new Set(cities.map(city => city.country))];
+    const handleDelete = (id) => {
+        deleteCity(id);
+        setShowDeleteModal(false);
+    };
+
+    const confirmDelete = (id) => {
+        setCityToDelete(id);
+        setShowDeleteModal(true);
+    };
 
     return (
         <Container className="mt-4">
             <h1 className="mb-4">All Cities</h1>
 
-            {/* סרגל פעולות */}
             <div className="d-flex justify-content-between mb-4">
-                <div>
-                    <Button
-                        variant="primary"
-                        onClick={() => setIsAdding(true)}
-                        className="me-2"
-                    >
-                        Add City
-                    </Button>
-                    <CityFilter
-                        countries={countries}
-                        onFilter={filterByCountry}
-                        onReset={resetFilter}
-                    />
-                </div>
+                <Button variant="primary" onClick={() => setIsAdding(true)}>
+                    Add City
+                </Button>
+                <CityFilter
+                    countries={[...new Set(cities.map(c => c.country))]}
+                    onFilter={filterByCountry}
+                    onReset={resetFilter}
+                />
             </div>
 
-            {/* טופס הוספה/עריכה */}
-            {(isAdding || editingCity) && (
-                <div className="card mb-4 p-3">
-                    <CityForm
-                        initialData={editingCity || undefined}
-                        onSubmit={editingCity ? handleEdit : handleAdd}
-                        onCancel={() => {
-                            setIsAdding(false);
-                            setEditingCity(null);
-                        }}
-                    />
-                </div>
+            {/* טופס הוספה */}
+            {isAdding && (
+                <CityForm
+                    mode="add"
+                    onSubmit={handleAdd}
+                    onCancel={() => setIsAdding(false)}
+                    cities={cities}
+                    dispatch={dispatch}
+                />
             )}
 
-            {/* רשימת הערים */}
+            {/* טופס עריכה */}
+            {editingCity && (
+                <CityForm
+                    mode="edit"
+                    city={editingCity}
+                    onSubmit={handleEdit}
+                    onCancel={() => setEditingCity(null)}
+                    cities={cities}
+                    dispatch={dispatch}
+                />
+            )}
+
+            {/* רשימת ערים */}
             <div className="row">
                 {cities.map(city => (
                     <div key={city.id} className="col-md-4 mb-4">
                         <CityCard
                             city={city}
                             onEdit={() => setEditingCity(city)}
-                            onDelete={() => deleteCity(city.id)}
+                            onDelete={() => confirmDelete(city.id)}
                             onToggleFavorite={() => toggleFavorite(city.id)}
+                            showEditDelete={true}
                         />
                     </div>
                 ))}
             </div>
+
+            {/* Modal למחיקה */}
+            <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Delete City</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Are you sure you want to delete this city?
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
+                        Cancel
+                    </Button>
+                    <Button variant="danger" onClick={() => handleDelete(cityToDelete)}>
+                        Delete
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </Container>
     );
 }

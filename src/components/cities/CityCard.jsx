@@ -1,24 +1,58 @@
-// src/components/cities/CityCard.jsx
 import { Button, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-export default function CityCard({ city, onEdit, onDelete, onToggleFavorite }) {
+export default function CityCard({
+                                     city,
+                                     onToggleFavorite,
+                                     onEdit,
+                                     onDelete,
+                                     showEditDelete = false
+                                 }) {
     return (
-        <Card className="h-100">
+        <Card className="h-100 shadow-sm">
             <Card.Body>
                 <Card.Title>{city.name}</Card.Title>
                 <Card.Text>
                     <strong>Country:</strong> {city.country}<br />
-                    <strong>Coordinates:</strong> {city.latitude}, {city.longitude}
+                    {showEditDelete && (
+                        <>
+                            <strong>Coordinates:</strong> {city.latitude}, {city.longitude}<br />
+                            <strong>Favorite:</strong> {city.isFavorite ? 'Yes' : 'No'}
+                        </>
+                    )}
                 </Card.Text>
-                <div className="d-flex gap-2">
-                    <Button
-                        variant={city.isFavorite ? "warning" : "outline-secondary"}
-                        onClick={onToggleFavorite}
+
+                <div className="d-flex flex-wrap gap-2">
+                    {/* כפתור מועדפים - מופיע רק כאשר showEditDelete=true */}
+                    {showEditDelete && (
+                        <Button
+                            variant={city.isFavorite ? "warning" : "outline-secondary"}
+                            onClick={onToggleFavorite}
+                            size="sm"
+                        >
+                            {city.isFavorite ? '★' : '☆'}
+                        </Button>
+                    )}
+
+                    {/* כפתורי עריכה/מחיקה - רק כשצריך */}
+                    {showEditDelete && (
+                        <>
+                            <Button variant="info" onClick={onEdit} size="sm">
+                                Edit
+                            </Button>
+                            <Button variant="danger" onClick={onDelete} size="sm">
+                                Delete
+                            </Button>
+                        </>
+                    )}
+
+                    {/* כפתור תחזית - מופיע בשני הדפים */}
+                    <Link
+                        to={`/weather/${city.id}`}
+                        className="btn btn-primary btn-sm"
                     >
-                        {city.isFavorite ? '★' : '☆'}
-                    </Button>
-                    <Button variant="info" onClick={onEdit}>Edit</Button>
-                    <Button variant="danger" onClick={onDelete}>Delete</Button>
+                        Forecast
+                    </Link>
                 </div>
             </Card.Body>
         </Card>

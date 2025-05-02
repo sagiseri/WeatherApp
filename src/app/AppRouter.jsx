@@ -7,7 +7,6 @@ import CityForm from '../components/cities/CityForm/CityForm';
 import WeatherPage from '../pages/WeatherPage';
 import AppLayout from './AppLayout';
 import ErrorBoundary from '../components/ui/ErrorBoundary';
-
 /**
  * רכיב ניתוב הראשי של האפליקציה
  * @param {Object} props - מאפייני הקומפוננטה
