@@ -1,4 +1,4 @@
-import Spinner from '../ui/Spinner';
+
 import { formatWeatherDate, getWeatherDescription } from '../../utils/api/weatherApi';
 
 const WeatherDisplay = ({
@@ -6,18 +6,10 @@ const WeatherDisplay = ({
                             loading,
                             error,
                             cityName,
-                            onFetchWeather
+
                         }) => {
     return (
         <div className="weather-container mt-3">
-            <button
-                onClick={onFetchWeather}
-                disabled={loading}
-                className="btn btn-primary"
-            >
-                {loading ? <Spinner size="sm" /> : 'Show Forecast'}
-            </button>
-
             {error && <div className="alert alert-danger mt-2">{error}</div>}
 
             {!weatherData && !loading && !error && (

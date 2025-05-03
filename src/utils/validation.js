@@ -32,5 +32,5 @@ export const validateCityForm = (data) => {
         errors.longitude = 'קו אורך חייב להיות בין 180- ל-180';
     }
 
-    return Object.keys(errors).length > 0 ? errors : null;
+    return errors;
 };

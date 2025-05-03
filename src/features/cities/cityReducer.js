@@ -26,6 +26,7 @@ export function cityReducer(state, action) {
         }
 
         case 'UPDATE_CITY':
+            console.log('Updated city payload:', action.payload);
             return {
                 ...state,
                 cities: state.cities.map(city =>

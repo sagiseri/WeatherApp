@@ -6,7 +6,8 @@ export default function CityCard({
                                      onToggleFavorite,
                                      onEdit,
                                      onDelete,
-                                     showEditDelete = false
+                                     showEditDelete = false,
+                                     showForecast = true
                                  }) {
     return (
         <Card className="h-100 shadow-sm">
@@ -47,12 +48,14 @@ export default function CityCard({
                     )}
 
                     {/* כפתור תחזית - מופיע בשני הדפים */}
-                    <Link
-                        to={`/weather/${city.id}`}
-                        className="btn btn-primary btn-sm"
-                    >
-                        Forecast
-                    </Link>
+                    {showForecast && (
+                        <Link
+                            to={`/weather/${city.id}`}
+                            className="btn btn-primary btn-sm"
+                        >
+                            Forecast
+                        </Link>
+                    )}
                 </div>
             </Card.Body>
         </Card>

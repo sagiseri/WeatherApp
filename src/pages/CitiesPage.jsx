@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Button, Container, Modal } from 'react-bootstrap';
 import CityForm from '../components/cities/CityForm/CityForm';
 import CityCard from '../components/cities/CityCard';
-import CityFilter from '../components/cities/CityFilter';
 import { useCities } from '../features/cities/cityHooks';
 
 export default function CitiesPage({ cities, dispatch }) {
@@ -16,8 +15,6 @@ export default function CitiesPage({ cities, dispatch }) {
         editCity,
         deleteCity,
         toggleFavorite,
-        filterByCountry,
-        resetFilter
     } = useCities(dispatch);
 
     const handleAdd = (newCity) => {
@@ -26,6 +23,9 @@ export default function CitiesPage({ cities, dispatch }) {
     };
 
     const handleEdit = (updatedCity) => {
+        if (!updatedCity.id && editingCity) {
+            updatedCity.id = editingCity.id;
+        }
         editCity(updatedCity);
         setEditingCity(null);
     };
@@ -48,11 +48,6 @@ export default function CitiesPage({ cities, dispatch }) {
                 <Button variant="primary" onClick={() => setIsAdding(true)}>
                     Add City
                 </Button>
-                <CityFilter
-                    countries={[...new Set(cities.map(c => c.country))]}
-                    onFilter={filterByCountry}
-                    onReset={resetFilter}
-                />
             </div>
 
             {/* טופס הוספה */}
@@ -88,6 +83,7 @@ export default function CitiesPage({ cities, dispatch }) {
                             onDelete={() => confirmDelete(city.id)}
                             onToggleFavorite={() => toggleFavorite(city.id)}
                             showEditDelete={true}
+                            showForecast={false}
                         />
                     </div>
                 ))}

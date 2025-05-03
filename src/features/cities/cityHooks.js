@@ -13,6 +13,7 @@ export const useCities = (dispatch) => {
     };
 
     const editCity = (updatedCity) => {
+        console.log(updatedCity);
         dispatch(updateCity(updatedCity));
     };
 

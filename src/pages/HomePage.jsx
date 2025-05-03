@@ -8,7 +8,7 @@ import { useCities } from '../features/cities/cityHooks'; // ייבוא ההוק
 
 export default function HomePage({ cities, loading, dispatch }) {
     const [selectedCountry, setSelectedCountry] = useState('');
-    const { toggleFavorite } = useCities(dispatch); // שימוש בהוק
+    const { toggleFavorite } = useCities(dispatch);
 
     // מיון הערים המועדפות לפי א-ב
     const favoriteCities = cities
