@@ -6,6 +6,7 @@ import AppRouter from './AppRouter';
 import ErrorBoundary from '../components/ui/ErrorBoundary';
 
 export default function App() {
+
     const [state, dispatch] = useReducer(cityReducer, initialState);
 
     const handleStorageError = (error, operation) => {

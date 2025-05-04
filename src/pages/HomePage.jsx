@@ -5,6 +5,7 @@ import CityFilter from '../components/cities/CityFilter';
 import Spinner from '../components/ui/Spinner';
 import { Link } from 'react-router-dom';
 import { useCities } from '../features/cities/cityHooks'; // ייבוא ההוק
+import ErrorBoundary from '../components/ui/ErrorBoundary';
 
 export default function HomePage({ cities, loading, dispatch }) {
     const [selectedCountry, setSelectedCountry] = useState('');
@@ -41,10 +42,12 @@ export default function HomePage({ cities, loading, dispatch }) {
             <Row>
                 {filteredCities.map(city => (
                     <Col key={city.id} md={4} className="mb-4">
-                        <CityCard
-                            city={city}
-                            onToggleFavorite={() => toggleFavorite(city.id)}
-                        />
+                        <ErrorBoundary> {/* כל כרטיס עיר בבידוד */}
+                            <CityCard
+                                city={city}
+                                onToggleFavorite={() => toggleFavorite(city.id)}
+                            />
+                        </ErrorBoundary>
                     </Col>
                 ))}
             </Row>

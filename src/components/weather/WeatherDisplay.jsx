@@ -1,5 +1,6 @@
 
 import { formatWeatherDate, getWeatherDescription } from '../../utils/api/weatherApi';
+import ErrorBoundary from '../../components/ui/ErrorBoundary';
 
 const WeatherDisplay = ({
                             weatherData,
@@ -23,23 +24,26 @@ const WeatherDisplay = ({
                     <h4>7-Day Forecast for {cityName}</h4>
                     <div className="weather-days row">
                         {weatherData.map((day) => (
-                            <div key={day.date} className="col-md-4 mb-3">
-                                <div className="card h-100">
-                                    <div className="card-body">
-                                        <h5 className="card-title">
-                                            {formatWeatherDate(day.date)}
-                                        </h5>
-                                        <p className="card-text">
-                                            <strong>Conditions:</strong> {getWeatherDescription(day.weather)}<br />
-                                            <strong>Max Temp:</strong> {day.temp2m.max}°C<br />
-                                            <strong>Min Temp:</strong> {day.temp2m.min}°C
-                                        </p>
+                            <ErrorBoundary>
+                                <div key={day.date} className="col-md-4 mb-3">
+                                    <div className="card h-100">
+                                        <div className="card-body">
+                                            <h5 className="card-title">
+                                                {formatWeatherDate(day.date)}
+                                            </h5>
+                                            <p className="card-text">
+                                                <strong>Conditions:</strong> {getWeatherDescription(day.weather)}<br />
+                                                <strong>Max Temp:</strong> {day.temp2m.max}°C<br />
+                                                <strong>Min Temp:</strong> {day.temp2m.min}°C
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </ErrorBoundary>
                         ))}
                     </div>
                 </div>
+
             )}
         </div>
     );

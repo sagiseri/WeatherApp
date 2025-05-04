@@ -3,6 +3,7 @@ import { Button, Container, Modal } from 'react-bootstrap';
 import CityForm from '../components/cities/CityForm/CityForm';
 import CityCard from '../components/cities/CityCard';
 import { useCities } from '../features/cities/cityHooks';
+import ErrorBoundary from '../components/ui/ErrorBoundary';
 
 export default function CitiesPage({ cities, dispatch }) {
     const [isAdding, setIsAdding] = useState(false);
@@ -16,6 +17,7 @@ export default function CitiesPage({ cities, dispatch }) {
         deleteCity,
         toggleFavorite,
     } = useCities(dispatch);
+
 
     const handleAdd = (newCity) => {
         addCity(newCity);
@@ -52,25 +54,29 @@ export default function CitiesPage({ cities, dispatch }) {
 
             {/* טופס הוספה */}
             {isAdding && (
-                <CityForm
-                    mode="add"
-                    onSubmit={handleAdd}
-                    onCancel={() => setIsAdding(false)}
-                    cities={cities}
-                    dispatch={dispatch}
-                />
+                <ErrorBoundary>
+                    <CityForm
+                        mode="add"
+                        onSubmit={handleAdd}
+                        onCancel={() => setIsAdding(false)}
+                        cities={cities}
+                        dispatch={dispatch}
+                    />
+                </ErrorBoundary>
             )}
 
             {/* טופס עריכה */}
             {editingCity && (
-                <CityForm
-                    mode="edit"
-                    city={editingCity}
-                    onSubmit={handleEdit}
-                    onCancel={() => setEditingCity(null)}
-                    cities={cities}
-                    dispatch={dispatch}
-                />
+                <ErrorBoundary>
+                    <CityForm
+                        mode="edit"
+                        city={editingCity}
+                        onSubmit={handleEdit}
+                        onCancel={() => setEditingCity(null)}
+                        cities={cities}
+                        dispatch={dispatch}
+                    />
+                </ErrorBoundary>
             )}
 
             {/* רשימת ערים */}
@@ -90,22 +96,24 @@ export default function CitiesPage({ cities, dispatch }) {
             </div>
 
             {/* Modal למחיקה */}
-            <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Delete City</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    Are you sure you want to delete this city?
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
-                        Cancel
-                    </Button>
-                    <Button variant="danger" onClick={() => handleDelete(cityToDelete)}>
-                        Delete
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+            <ErrorBoundary>
+                <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Delete City</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        Are you sure you want to delete this city?
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
+                            Cancel
+                        </Button>
+                        <Button variant="danger" onClick={() => handleDelete(cityToDelete)}>
+                            Delete
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            </ErrorBoundary>
         </Container>
     );
 }

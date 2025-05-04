@@ -38,7 +38,6 @@ export const useLocalStorage = (key, value, dispatch, onError) => {
         try {
             localStorage.setItem(key, JSON.stringify(value));
         } catch (error) {
-            console.error('Failed to save cities:', error);
             if (onError) onError(error, 'save');
         }
     }, [key, value, onError]);

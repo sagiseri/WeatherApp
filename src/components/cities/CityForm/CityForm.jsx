@@ -3,13 +3,7 @@ import { Form, Button, Modal, Alert } from 'react-bootstrap';
 import CityInputField from './CityInputField';
 import CountrySelect from './CountrySelect';
 import { validateCityForm } from '../../../utils/validation';
-
-// רשימת מדינות ברירת מחדל
-const DEFAULT_COUNTRIES = [
-    'Israel', 'USA', 'France', 'Japan',
-    'Spain', 'Italy', 'Germany', 'United Kingdom',
-    'Canada', 'Australia', 'Brazil', 'South Africa'
-];
+import { DEFAULT_COUNTRIES } from '../../../utils/constants';
 
 export default function CityForm({
                                      initialData = {},
@@ -65,7 +59,6 @@ export default function CityForm({
                 return;
             }
 
-            // שליחת הנתונים עם trim סופי
             await onSubmit({
                 ...formData,
                 name: formData.name.trim(),
@@ -75,12 +68,10 @@ export default function CityForm({
             });
 
         } catch (error) {
-            console.error('Form submission error:', error);
             setFormError(error.message || 'An error occurred while saving the city');
         }
     };
 
-    // מיזוג מדינות מהערים הקיימות עם ברירת המחדל
     const countries = [...new Set([
         ...DEFAULT_COUNTRIES,
         ...cities.map(c => c.country).filter(Boolean)

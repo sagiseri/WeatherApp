@@ -66,5 +66,12 @@ export const initialCities = [
     }
 ];
 
+export const DEFAULT_COUNTRIES = [
+    'Israel', 'USA', 'France', 'Japan',
+    'Spain', 'Italy', 'Germany', 'United Kingdom',
+    'Canada', 'Australia', 'Brazil', 'South Africa'
+];
+
+
 
 export const WEATHER_API_URL = "https://www.7timer.info/bin/api.pl"; // לא קשור לטעינת הערים
