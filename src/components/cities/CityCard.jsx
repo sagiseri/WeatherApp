@@ -1,13 +1,29 @@
 import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
+const COUNTRY_CLIMATES = {
+    'Australia': 'Tropical north, hot inland summers, milder coastal areas',
+    'Brazil': 'Tropical - hot/humid north, temperate south',
+    'Canada': 'Cold winters, warm summers. Coastal BC has mild winters',
+    'France': 'Oceanic north, Mediterranean south, snowy Alps',
+    'Germany': 'Temperate - cold winters, mild summers. Sunnier in south',
+    'Israel': 'Mediterranean - hot dry summers, mild rainy winters',
+    'Italy': 'Mediterranean coasts, colder northern winters',
+    'Japan': 'Varies from snowy north to subtropical south',
+    'South Africa': 'Mediterranean coasts, temperate interior',
+    'Spain': 'Mediterranean coasts, semi-arid interior',
+    'USA': 'Extremes from Arctic to tropical. Mediterranean west coast',
+    'United Kingdom': 'Mild maritime - cool winters, mild summers'
+};
+
 export default function CityCard({
                                      city,
                                      onToggleFavorite,
                                      onEdit,
                                      onDelete,
                                      showEditDelete = false,
-                                     showForecast = true
+                                     showForecast = true,
+                                     showClimate = false
                                  }) {
     return (
         <Card className="h-100 shadow-sm">
@@ -15,6 +31,11 @@ export default function CityCard({
                 <Card.Title>{city.name}</Card.Title>
                 <Card.Text>
                     <strong>Country:</strong> {city.country}<br />
+                    {showClimate && COUNTRY_CLIMATES[city.country] && (
+                        <>
+                            <strong>Climate:</strong> {COUNTRY_CLIMATES[city.country]}<br />
+                        </>
+                    )}
                     {showEditDelete && (
                         <>
                             <strong>Coordinates:</strong> {city.latitude}, {city.longitude}<br />
@@ -24,7 +45,6 @@ export default function CityCard({
                 </Card.Text>
 
                 <div className="d-flex flex-wrap gap-2">
-                    {/* כפתור מועדפים - מופיע רק כאשר showEditDelete=true */}
                     {showEditDelete && (
                         <Button
                             variant={city.isFavorite ? "warning" : "outline-secondary"}

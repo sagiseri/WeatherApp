@@ -30,7 +30,6 @@ export const fetchWeatherForecast = async (lat, lon) => {
 
         return data.dataseries;
     } catch (error) {
-        console.error('Failed to fetch weather data:', error);
         throw new Error('Failed to load weather data. Please try again later.');
     }
 };

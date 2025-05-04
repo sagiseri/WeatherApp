@@ -18,12 +18,11 @@ const WeatherPage = ({ cities }) => {
         fetchWeather
     } = useWeatherApi();
 
-    // מיקום אידיאלי ל-useEffect - חלק אינטגרלי מהקומפוננטה
     useEffect(() => {
         if (city) {
             fetchWeather(city.latitude, city.longitude);
         }
-    }, [city]); // תלוי רק ב-city
+    }, [city]);
 
     if (!city) {
         return (
@@ -46,6 +45,7 @@ const WeatherPage = ({ cities }) => {
                         city={city}
                         showEditDelete={false}
                         showForecast={false}
+                        showClimate={true}
                     />
                 </div>
 
@@ -61,7 +61,7 @@ const WeatherPage = ({ cities }) => {
                             <Button
                                 onClick={() => fetchWeather(city.latitude, city.longitude)}
                                 variant="outline-danger"
-                                className="mt-2"
+                                className="mt-2 mt-n1 ms-2"
                                 size="sm"
                             >
                                 Retry

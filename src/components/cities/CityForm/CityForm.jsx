@@ -32,7 +32,6 @@ export default function CityForm({
 
         setFormData(prev => ({ ...prev, [name]: processedValue }));
 
-        // איפוס שגיאה כשהמשתמש מתקן
         if (errors[name]) {
             setErrors(prev => ({ ...prev, [name]: '' }));
         }

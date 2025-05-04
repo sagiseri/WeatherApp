@@ -12,7 +12,6 @@ export default function CityFilter({
                 value={selectedCountry}
                 onChange={(e) => onSelect(e.target.value)}
                 className="me-2"
-                style={{ width: '200px' }}
                 aria-label="Filter by country"
             >
                 <option value="">All Countries</option>

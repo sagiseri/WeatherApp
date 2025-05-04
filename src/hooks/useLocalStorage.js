@@ -18,7 +18,6 @@ export const useLocalStorage = (key, value, dispatch, onError) => {
                     dispatch(loadCities(parsedData));
                 }
             } else {
-                // אתחול עם נתוני ברירת מחדל אם אין נתונים
                 dispatch(loadCities(initialCities));
                 localStorage.setItem(key, JSON.stringify(initialCities));
             }
@@ -32,7 +31,6 @@ export const useLocalStorage = (key, value, dispatch, onError) => {
         }
     }, [key, dispatch, onError]); // ללא תלות ב-`value`!
 
-    // שמירת שינויים - רץ רק כאשר `value` משתנה (אחרי אתחול)
     useEffect(() => {
         if (!initialized) return;
         try {
