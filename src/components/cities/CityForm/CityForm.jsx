@@ -25,7 +25,6 @@ export default function CityForm({
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        // ביצוע trim אוטומטי עבור שדות טקסט
         const processedValue = name === 'name' || name === 'country'
             ? value.trimStart()
             : value;
@@ -67,7 +66,7 @@ export default function CityForm({
             });
 
         } catch (error) {
-            setFormError(error.message || 'An error occurred while saving the city');
+            setFormError(error instanceof Error ? error.message : 'An error occurred while saving the city');
         }
     };
 

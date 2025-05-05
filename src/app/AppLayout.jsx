@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Navbar, Nav } from 'react-bootstrap';
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 /**
  * רכיב המגדיר את מבנה העמוד הבסיסי של האפליקציה
@@ -10,26 +11,35 @@ export default function AppLayout() {
     return (
         <div className="d-flex flex-column min-vh-100">
             <Navbar bg="primary" variant="dark" expand="lg" className="shadow-sm px-3" sticky="top">
-
-                <Navbar.Brand as={Link} to="/" className="d-flex align-items-center me-auto">
-                    <i className="bi bi-cloud-sun fs-4 me-2"></i>
-                    <span className="fw-bold">Weather App</span>
+                {/* Fix: Use 'as' prop with a string for the component tag */}
+                <Navbar.Brand as="div" className="d-flex align-items-center me-auto">
+                    <Link to="/" className="text-decoration-none text-white d-flex align-items-center">
+                        <i className="bi bi-cloud-sun fs-4 me-2"></i>
+                        <span className="fw-bold">Weather App</span>
+                    </Link>
                 </Navbar.Brand>
+
                 <Navbar.Toggle aria-controls="main-navbar" />
                 <Navbar.Collapse id="main-navbar">
                     <Nav className="ms-auto">
-                        <Nav.Link as={Link} to="/" className="mx-2">
-                            <i className="bi bi-house-door me-1 aria-label="></i> Homepage
+                        {/* Fix: Separate Nav.Link from Link component */}
+                        <Nav.Link as="div" className="mx-2 p-0">
+                            <Link to="/" className="nav-link">
+                                <i className="bi bi-house-door me-1" aria-hidden="true"></i> Homepage
+                            </Link>
                         </Nav.Link>
-                        <Nav.Link as={Link} to="/cities" className="mx-2">
-                            <i className="bi bi-buildings me-1"></i> All cities
+                        <Nav.Link as="div" className="mx-2 p-0">
+                            <Link to="/cities" className="nav-link">
+                                <i className="bi bi-buildings me-1"></i> All cities
+                            </Link>
                         </Nav.Link>
-                        <Nav.Link as={Link} to="/about" className="mx-2">
-                            <i className="bi bi-info-circle me-1"></i>About
+                        <Nav.Link as="div" className="mx-2 p-0">
+                            <Link to="/about" className="nav-link">
+                                <i className="bi bi-info-circle me-1"></i>About
+                            </Link>
                         </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
-
             </Navbar>
 
             {/* Main Content - תוכן עיקרי */}
@@ -42,14 +52,6 @@ export default function AppLayout() {
                 <Container>
                     <div className="d-flex flex-column justify-content-between align-items-center text-center">
                         <p className="mb-2 mb-md-0 text-muted w-100">© {new Date().getFullYear()} Weather App</p>
-                        <div>
-                            <a href="#" className="text-decoration-none text-muted mx-2">
-                                <i className="bi bi-github"></i>
-                            </a>
-                            <a href="#" className="text-decoration-none text-muted mx-2">
-                                <i className="bi bi-linkedin"></i>
-                            </a>
-                        </div>
                     </div>
                 </Container>
             </footer>

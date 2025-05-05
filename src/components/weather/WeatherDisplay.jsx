@@ -24,8 +24,8 @@ const WeatherDisplay = ({
                     <h4>7-Day Forecast for {cityName}</h4>
                     <div className="weather-days row">
                         {weatherData.map((day) => (
-                            <ErrorBoundary>
-                                <div key={day.date} className="col-md-4 mb-3">
+                            <ErrorBoundary key={day.date}>
+                                <div className="col-md-4 mb-3">
                                     <div className="card h-100">
                                         <div className="card-body">
                                             <h5 className="card-title">
