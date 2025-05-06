@@ -43,7 +43,7 @@ const CityFormView = ({
         <Form onSubmit={handleSubmit} noValidate>
             <Modal.Header closeButton>
                 <Modal.Title id="city-form-title">
-                    {mode === 'add' ? 'הוספת עיר חדשה' : 'עריכת עיר'}
+                    {mode === 'add' ? 'Add New City' : 'Edit City'}
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -54,12 +54,12 @@ const CityFormView = ({
                 )}
 
                 <CityInputField
-                    label="שם העיר"
+                    label="City Name"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
                     error={errors.name}
-                    placeholder="הזן שם עיר"
+                    placeholder="Enter city name"
                     required
                     pattern="[a-zA-Z\u0590-\u05FF\s]+"
                 />
@@ -73,13 +73,13 @@ const CityFormView = ({
                 />
 
                 <CityInputField
-                    label="קו רוחב"
+                    label="Latitude"
                     type="number"
                     name="latitude"
                     value={formData.latitude}
                     onChange={handleChange}
                     error={errors.latitude || errors.coordinates}
-                    placeholder="מספר בין 90- ל-90"
+                    placeholder="Number between -90 and 90"
                     required
                     min="-90"
                     max="90"
@@ -87,13 +87,13 @@ const CityFormView = ({
                 />
 
                 <CityInputField
-                    label="קו אורך"
+                    label="Longitude"
                     type="number"
                     name="longitude"
                     value={formData.longitude}
                     onChange={handleChange}
                     error={errors.longitude || errors.coordinates}
-                    placeholder="מספר בין 180- ל-180"
+                    placeholder="Number between -180 and 180"
                     required
                     min="-180"
                     max="180"
@@ -102,10 +102,10 @@ const CityFormView = ({
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={onCancel}>
-                    ביטול
+                    Cancel
                 </Button>
                 <Button variant="primary" type="submit">
-                    {mode === 'add' ? 'הוסף עיר' : 'עדכן עיר'}
+                    {mode === 'add' ? 'Add City' : 'Update City'}
                 </Button>
             </Modal.Footer>
         </Form>

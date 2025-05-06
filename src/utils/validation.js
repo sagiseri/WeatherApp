@@ -27,21 +27,21 @@ export const validateCityFields = (data) => {
     const errors = {};
 
     if (!data.name?.trim()) {
-        errors.name = 'שם העיר חובה';
+        errors.name = 'City name is required';
     } else if (!isValidName(data.name)) {
-        errors.name = 'שם העיר יכול להכיל רק אותיות ורווחים';
+        errors.name = 'City name can only contain letters and spaces';
     }
 
     if (!data.country?.trim()) {
-        errors.country = 'ארץ חובה';
+        errors.country = 'Country is required';
     }
 
     if (!isValidCoordinate(data.latitude, -90, 90)) {
-        errors.latitude = 'קו רוחב חייב להיות מספר בין 90- ל-90';
+        errors.latitude = 'Latitude must be a number between -90 and 90';
     }
 
     if (!isValidCoordinate(data.longitude, -180, 180)) {
-        errors.longitude = 'קו אורך חייב להיות מספר בין 180- ל-180';
+        errors.longitude = 'Longitude must be a number between -180 and 180';
     }
 
     return errors;
@@ -56,19 +56,22 @@ export const validateCityUniqueness = (data, cities, excludeId = null) => {
     const lat = parseFloat(data.latitude);
     const lng = parseFloat(data.longitude);
 
-    const isNameUnique = !cities.some(city =>
-        city.name.toLowerCase() === name && city.id !== excludeId
-    );
+    const isNameUnique = !cities.some(city => {
+        if (excludeId && city.id === excludeId) return false;
+        return city.name.toLowerCase() === name;
+    });
 
-    const isLocationUnique = !cities.some(city =>
-        Math.abs(city.latitude - lat) < 0.0001 &&
-        Math.abs(city.longitude - lng) < 0.0001 &&
-        city.id !== excludeId
-    );
+    const isLocationUnique = !cities.some(city => {
+        if (excludeId && city.id === excludeId) return false;
+        return (
+            Math.abs(city.latitude - lat) < 0.0001 &&
+            Math.abs(city.longitude - lng) < 0.0001
+        );
+    });
 
-    if (!isNameUnique) errors.name = 'עיר עם שם זה כבר קיימת';
+    if (!isNameUnique) errors.name = 'A city with this name already exists';
     if (!isLocationUnique) {
-        errors.coordinates = 'קואורדינטות אלו כבר תפוסות';
+        errors.coordinates = 'These coordinates are already in use';
     }
 
     return errors;

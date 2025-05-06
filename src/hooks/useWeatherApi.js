@@ -12,7 +12,6 @@ const useWeatherApi = () => {
 
     const fetchWeather = async (lat, lon) => {
         if (isFetching) {
-            console.log('בקשה כבר פעילה – לא שולח שוב');
             return;
         }
 

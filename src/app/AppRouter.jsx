@@ -98,8 +98,8 @@ export default function AppRouter({ cities, dispatch, loading }) {
                     element={
                         <ErrorBoundary>
                             <div className="container text-center py-5">
-                                <h1>404 - עמוד לא נמצא</h1>
-                                <p>הדף שביקשת אינו קיים במערכת</p>
+                                <h1>404 - Page Not Found</h1>
+                                <p>The page you requested does not exist in the system.</p>
                             </div>
                         </ErrorBoundary>
                     }

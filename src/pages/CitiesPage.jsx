@@ -89,7 +89,7 @@ export default function CitiesPage({ cities, dispatch }) {
                         <Card.Body>
                             <CityForm
                                 mode="edit"
-                                city={editingCity}
+                                initialData={editingCity}
                                 onSubmit={handleEdit}
                                 onCancel={() => setEditingCity(null)}
                                 cities={cities}
