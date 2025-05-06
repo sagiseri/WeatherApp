@@ -8,8 +8,15 @@ const useWeatherApi = () => {
     const [weatherData, setWeatherData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [isFetching, setIsFetching] = useState(false);
 
     const fetchWeather = async (lat, lon) => {
+        if (isFetching) {
+            console.log('בקשה כבר פעילה – לא שולח שוב');
+            return;
+        }
+
+        setIsFetching(true);
         setLoading(true);
         setError(null);
         try {
@@ -20,6 +27,7 @@ const useWeatherApi = () => {
             setWeatherData(null);
         } finally {
             setLoading(false);
+            setIsFetching(false);
         }
     };
 

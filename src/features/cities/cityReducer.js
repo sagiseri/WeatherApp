@@ -6,6 +6,13 @@ export const initialState = {
     error: null
 };
 
+const updateCityInArray = (arr, cityId, newData) =>
+    arr.map(city => city.id === cityId ? { ...city, ...newData } : city);
+
+const filterCitiesByCountry = (cities, country) =>
+    country ? cities.filter(city => city.country === country) : cities;
+
+
 export function cityReducer(state, action) {
     switch (action.type) {
         case 'SET_CITIES':
@@ -26,15 +33,10 @@ export function cityReducer(state, action) {
         }
 
         case 'UPDATE_CITY':
-            console.log('Updated city payload:', action.payload);
             return {
                 ...state,
-                cities: state.cities.map(city =>
-                    city.id === action.payload.id ? action.payload : city
-                ),
-                filteredCities: state.filteredCities.map(city =>
-                    city.id === action.payload.id ? action.payload : city
-                )
+                cities: updateCityInArray(state.cities, action.payload.id, action.payload),
+                filteredCities: updateCityInArray(state.filteredCities, action.payload.id, action.payload)
             };
 
         case 'REMOVE_CITY':
@@ -56,12 +58,7 @@ export function cityReducer(state, action) {
             };
 
         case 'FILTER_BY_COUNTRY':
-            return {
-                ...state,
-                filteredCities: state.cities.filter(city =>
-                    action.payload ? city.country === action.payload : state.cities
-                )
-            };
+            return { ...state, filteredCities: filterCitiesByCountry(state.cities, action.payload) };
 
         case 'RESET_CITY_FILTER':
             return {
