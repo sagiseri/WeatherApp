@@ -22,7 +22,7 @@ const WeatherPage = ({ cities }) => {
         if (city) {
             fetchWeather(city.latitude, city.longitude);
         }
-    }, [city]);
+    }, [city?.id]);
 
     if (!city) {
         return (

@@ -8,7 +8,6 @@ export default function CityCard({
                                      onDelete,
                                      showEditDelete = false,
                                      showForecast = true,
-                                     showClimate = false
                                  }) {
     return (
         <Card className="h-100 shadow-sm">

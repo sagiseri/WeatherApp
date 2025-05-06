@@ -49,9 +49,4 @@ export const resetCityFilter = () => ({
     type: 'RESET_CITY_FILTER'
 });
 
-// הגדרת שגיאה
-export const setCitiesError = (error) => ({
-    type: 'SET_CITIES_ERROR',
-    payload: error.message || 'Unknown error occurred'
-});
 
