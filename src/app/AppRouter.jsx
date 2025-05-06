@@ -7,13 +7,21 @@ import CityForm from '../components/cities/CityForm/CityForm';
 import WeatherPage from '../pages/WeatherPage';
 import AppLayout from './AppLayout';
 import ErrorBoundary from '../components/ui/ErrorBoundary';
+
 /**
- * רכיב ניתוב הראשי של האפליקציה
- * @param {Object} props - מאפייני הקומפוננטה
- * @param {Array} props.cities - רשימת הערים
- * @param {Function} props.dispatch - פונקציית dispatch לניהול ה-state
- * @param {boolean} props.loading - מצב טעינה
- * @returns {JSX.Element} - מערכת הניתוב של האפליקציה
+ * AppRouter is the routing component for the Weather App.
+ * It defines the routes for navigating between different pages of the app, including:
+ * - HomePage
+ * - CitiesPage
+ * - CityForm (add/edit)
+ * - WeatherPage
+ * - AboutPage
+ * - 404 page for unmatched routes
+ * @param cities - A list of cities to be passed to pages like HomePage, CitiesPage, WeatherPage, and CityForm
+ * @param dispatch - Dispatch function to manage state updates
+ * @param loading - Boolean to manage the loading state, typically used for showing spinners or loading states
+ * @returns {JSX.Element} The rendered routing configuration
+ * @constructor
  */
 export default function AppRouter({ cities, dispatch, loading }) {
     return (

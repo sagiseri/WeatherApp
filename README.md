@@ -1,3 +1,7 @@
+<h1>student information:</h1>
+Sagi Seri sagise@edu.jmc.ac.il<br>
+Malka Grafstein malkagra@edu.jmc.ac.il
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

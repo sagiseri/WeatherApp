@@ -1,16 +1,19 @@
 import { Form } from 'react-bootstrap';
 
 /**
- * קומפוננטה גנרית לשדות קלט בטופס
- * @param {Object} props
- * @param {string} props.label - תווית השדה
- * @param {string} props.type - סוג השדה (text, number וכו')
- * @param {string} props.name - שם השדה
- * @param {any} props.value - ערך השדה
- * @param {function} props.onChange - פונקציה לטיפול בשינוי
- * @param {string} [props.error] - הודעת שגיאה
- * @param {string} [props.placeholder] - טקסט מציין מקום
- * @param {boolean} [props.required] - האם השדה נדרש
+ * A form input component for rendering a labeled input field with validation feedback.
+ * This component is typically used in forms where each input needs to be validated
+ * (e.g., city name, latitude, longitude, etc.).
+ * @param label - The label text displayed next to the input field.
+ * @param type - The type of the input field (e.g., "text", "number", etc.).
+ * @param name - The name attribute of the input field.
+ * @param value - The value of the input field, which is controlled by the parent component.
+ * @param onChange - The function to call when the value of the input changes.
+ * @param error - The error message to display if validation fails.
+ * @param placeholder - The placeholder text for the input field.
+ * @param required - Whether the input field is required (default is false).
+ * @returns {JSX.Element} The rendered input field component with label, error message, and validation feedback.
+ * @constructor
  */
 export default function CityInputField({
                                            label,

@@ -4,14 +4,21 @@ import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 
 /**
- * רכיב המגדיר את מבנה העמוד הבסיסי של האפליקציה
- * @returns {JSX.Element} - מבנה העמוד הבסיסי
+ * AppLayout is the main layout component for the Weather App.
+ *
+ * It includes:
+ * - A responsive Bootstrap navigation bar with links to main pages.
+ * - A dynamic content area rendered via React Router's <Outlet />.
+ * - A footer that stays at the bottom using flex layout.
+ *
+ * This layout wraps all pages in a consistent UI structure.
+ * @returns {Element} The layout including navbar, page content, and footer.
+ * @constructor
  */
 export default function AppLayout() {
     return (
         <div className="d-flex flex-column min-vh-100">
             <Navbar bg="primary" variant="dark" expand="lg" className="shadow-sm px-3" sticky="top">
-                {/* Fix: Use 'as' prop with a string for the component tag */}
                 <Navbar.Brand as="div" className="d-flex align-items-center me-auto">
                     <Link to="/" className="text-decoration-none text-white d-flex align-items-center">
                         <i className="bi bi-cloud-sun fs-4 me-2"></i>
@@ -22,7 +29,7 @@ export default function AppLayout() {
                 <Navbar.Toggle aria-controls="main-navbar" />
                 <Navbar.Collapse id="main-navbar">
                     <Nav className="ms-auto">
-                        {/* Fix: Separate Nav.Link from Link component */}
+
                         <Nav.Link as="div" className="mx-2 p-0">
                             <Link to="/" className="nav-link">
                                 <i className="bi bi-house-door me-1" aria-hidden="true"></i> Homepage
@@ -42,12 +49,12 @@ export default function AppLayout() {
                 </Navbar.Collapse>
             </Navbar>
 
-            {/* Main Content - תוכן עיקרי */}
+            {/* Main Content */}
             <Container className="flex-grow-1 mt-4 mb-5">
                 <Outlet />
             </Container>
 
-            {/* Footer - כותרת תחתונה */}
+            {/* Footer */}
             <footer className="bg-light py-3 mt-auto">
                 <Container>
                     <div className="d-flex flex-column justify-content-between align-items-center text-center">

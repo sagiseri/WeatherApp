@@ -1,6 +1,18 @@
 import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
+/**
+ * Renders a card displaying information about a city, including options for editing, deleting,
+ * toggling favorite status, and viewing the weather forecast.
+ * @param city - The city object containing its data.
+ * @param onToggleFavorite - Callback for toggling the favorite status.
+ * @param onEdit - Callback for editing the city.
+ * @param onDelete - Callback for deleting the city.
+ * @param showEditDelete - Whether to show the edit/delete/favorite buttons.
+ * @param showForecast - Whether to show the forecast button/link.
+ * @returns {JSX.Element} The rendered city card component.
+ * @constructor
+ */
 export default function CityCard({
                                      city,
                                      onToggleFavorite,
@@ -35,7 +47,7 @@ export default function CityCard({
                         </Button>
                     )}
 
-                    {/* כפתורי עריכה/מחיקה - רק כשצריך */}
+
                     {showEditDelete && (
                         <>
                             <Button variant="info" onClick={onEdit} size="sm">
@@ -47,7 +59,7 @@ export default function CityCard({
                         </>
                     )}
 
-                    {/* כפתור תחזית - מופיע בשני הדפים */}
+
                     {showForecast && (
                         <Link
                             to={`/weather/${city.id}`}

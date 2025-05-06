@@ -5,10 +5,21 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 import AppRouter from './AppRouter';
 import ErrorBoundary from '../components/ui/ErrorBoundary';
 
+/**
+ * The main App component for the React application.
+ * - Initializes and manages city-related state using useReducer.
+ *  - Persists city data to localStorage using a custom hook.
+ * @returns {JSX.Element} The rendered App component.
+ * @constructor
+ */
 export default function App() {
 
     const [state, dispatch] = useReducer(cityReducer, initialState);
-
+    /**
+     * Handles errors related to localStorage operations.
+     * @param error - The error object caught.
+     * @param operation - The storage operation that failed (e.g., 'load', 'save').
+     */
     const handleStorageError = (error, operation) => {
         console.error(`Storage ${operation} error:`, error);
 

@@ -1,5 +1,15 @@
 import { Form, Button } from 'react-bootstrap';
 
+/**
+ * Renders a dropdown filter for selecting a country to filter cities by,
+ * along with a reset button to clear the selected filter.
+ * @param countries - List of countries available for filtering.
+ * @param selectedCountry - The currently selected country.
+ * @param onSelect - Callback when a country is selected.
+ * @param onReset - Callback to reset the selected country filter.
+ * @returns {JSX.Element} The rendered country filter UI.
+ * @constructor
+ */
 export default function CityFilter({
                                        countries,
                                        selectedCountry,

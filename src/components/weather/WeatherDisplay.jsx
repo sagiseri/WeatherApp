@@ -2,6 +2,16 @@
 import { formatWeatherDate, getWeatherDescription } from '../../utils/api/weatherApi';
 import ErrorBoundary from '../../components/ui/ErrorBoundary';
 
+/**
+ * Displays a 7-day weather forecast for a given city.
+ *
+ * @param weatherData - Array of weather data for each day.
+ * @param loading - Indicates whether the weather data is currently being loaded.
+ * @param error - Error message, if any.
+ * @param cityName - Name of the city for which the forecast is shown.
+ * @returns {JSX.Element} The rendered component showing the weather forecast or status messages.
+ * @constructor
+ */
 const WeatherDisplay = ({
                             weatherData,
                             loading,
