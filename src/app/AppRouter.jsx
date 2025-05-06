@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
 import CitiesPage from '../pages/CitiesPage';
 import AboutPage from '../pages/AboutPage';
-import CityForm from '../components/cities/CityForm/CityForm';
 import WeatherPage from '../pages/WeatherPage';
 import AppLayout from './AppLayout';
 import ErrorBoundary from '../components/ui/ErrorBoundary';
@@ -51,31 +50,6 @@ export default function AppRouter({ cities, dispatch, loading }) {
                             <CitiesPage
                                 cities={cities}
                                 dispatch={dispatch}
-                            />
-                        </ErrorBoundary>
-                    }
-                />
-
-                <Route
-                    path="/cities/add"
-                    element={
-                        <ErrorBoundary>
-                            <CityForm
-                                dispatch={dispatch}
-                                mode="add"
-                            />
-                        </ErrorBoundary>
-                    }
-                />
-
-                <Route
-                    path="/cities/edit/:id"
-                    element={
-                        <ErrorBoundary>
-                            <CityForm
-                                dispatch={dispatch}
-                                cities={cities}
-                                mode="edit"
                             />
                         </ErrorBoundary>
                     }

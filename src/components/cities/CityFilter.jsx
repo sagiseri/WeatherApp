@@ -16,6 +16,9 @@ export default function CityFilter({
                                        onSelect,
                                        onReset
                                    }) {
+
+    const sortedCountries = [...countries].sort((a, b) => a.localeCompare(b));
+
     return (
         <div className="d-flex align-items-center gap-2">
             <Form.Select
@@ -25,7 +28,7 @@ export default function CityFilter({
                 aria-label="Filter by country"
             >
                 <option value="">All Countries</option>
-                {countries.map(country => (
+                {sortedCountries.map(country => (
                     <option key={country} value={country}>{country}</option>
                 ))}
             </Form.Select>
