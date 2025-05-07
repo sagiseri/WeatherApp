@@ -1,19 +1,21 @@
 // utils/validation.js
 
-/**
- * ולידציה עבור טופס עיר
- * @param {Object} data - נתוני הטופס
- * @returns {Object} - אובייקט עם שגיאות או null אם אין שגיאות
- */
+
 // src/utils/validation.js
 
 /**
- * בודק אם ערך מכיל רק אותיות ורווחים
+ * Validates if a city name contains only letters and spaces.
+ * @param name - The name of the city to validate.
+ * @returns {boolean} - Returns `true` if the name is valid, otherwise `false`.
  */
 const isValidName = (name) => /^[a-zA-Z\s]+$/.test(name);
 
 /**
- * בודק אם קואורדינטה במתחם התקין
+ * Validates if a coordinate (latitude or longitude) is within a specified range.
+ * @param value - The coordinate value to validate.
+ * @param min - The minimum valid value for the coordinate.
+ * @param max - The maximum valid value for the coordinate.
+ * @returns {boolean} - Returns `true` if the value is a valid coordinate within the range, otherwise `false`.
  */
 const isValidCoordinate = (value, min, max) => {
     const num = parseFloat(value);
@@ -21,7 +23,9 @@ const isValidCoordinate = (value, min, max) => {
 };
 
 /**
- * ולידציה ראשונית של שדות הטופס
+ * Validates the fields of a city (name, country, latitude, longitude).
+ * @param data - The city data to validate.
+ * @returns {{}} - An object containing validation errors, or an empty object if there are no errors.
  */
 export const validateCityFields = (data) => {
     const errors = {};
@@ -48,7 +52,11 @@ export const validateCityFields = (data) => {
 };
 
 /**
- * בודק ייחודיות מול רשימת ערים קיימת
+ * Validates if the city name and coordinates are unique among a list of cities.
+ * @param data - The city data to validate for uniqueness.
+ * @param cities - The array of existing cities to check against.
+ * @param excludeId - The ID of the city to exclude from the uniqueness check
+ * @returns {{}} - An object containing validation errors for name and coordinates, or an empty object if there are no errors.
  */
 export const validateCityUniqueness = (data, cities, excludeId = null) => {
     const errors = {};

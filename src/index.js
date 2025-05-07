@@ -6,6 +6,12 @@ import App from './app/App';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
+/**
+ * Entry point for the React application.
+ *
+ * Renders the main App component inside a BrowserRouter to enable routing.
+ * Bootstrap CSS and JS are imported for styling and interactivity.
+ */
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>

@@ -1,8 +1,7 @@
-
 /**
- * Formats API date to readable format (DD/MM/YYYY)
- * @param {number} apiDate - Date in YYYYMMDD format
- * @returns {string} Formatted date
+ * Formats a date string from the weather API into a human-readable date format (DD/MM/YYYY).
+ * @param apiDate - The date string from the API, in the format YYYYMMDD.
+ * @returns {`${string}/${string}/${string}`} - The formatted date as a string in the format DD/MM/YYYY.
  */
 export const formatWeatherDate = (apiDate) => {
     const dateStr = apiDate.toString();
@@ -10,9 +9,9 @@ export const formatWeatherDate = (apiDate) => {
 };
 
 /**
- * Maps weather codes to descriptions
- * @param {string} weatherCode - API weather code
- * @returns {string} Weather description
+ * Returns a human-readable description of the weather based on the given weather code.
+ * @param weatherCode - The weather code from the API
+ * @returns {*} - A human-readable description of the weather
  */
 export const getWeatherDescription = (weatherCode) => {
     const descriptions = {

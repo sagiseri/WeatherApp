@@ -1,6 +1,7 @@
 <h1>student information:</h1>
 Sagi Seri sagise@edu.jmc.ac.il<br>
-Malka Grafstein malkagra@edu.jmc.ac.il
+Malka Grafstein malkagra@edu.jmc.ac.il<br>
+one of the members was in miluim for a week of the assignment.
 
 # Getting Started with Create React App
 

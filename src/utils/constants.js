@@ -1,4 +1,8 @@
 // src/utils/constants.js
+/**
+ * An array of initial cities with their details including id, name, country, latitude, longitude, and whether the city is marked as a favorite.
+ * @type {[{country: string, latitude: number, name: string, id: number, longitude: number, isFavorite: boolean},{country: string, latitude: number, name: string, id: number, longitude: number, isFavorite: boolean},{country: string, latitude: number, name: string, id: number, longitude: number, isFavorite: boolean},{country: string, latitude: number, name: string, id: number, longitude: number, isFavorite: boolean},{country: string, latitude: number, name: string, id: number, longitude: number, isFavorite: boolean},null,null,null]}
+ */
 export const initialCities = [
     {
         id: 1,
@@ -65,7 +69,10 @@ export const initialCities = [
         isFavorite: true
     }
 ];
-
+/**
+ * A list of default countries used for filtering cities or for display purposes.
+ * @type {string[]}
+ */
 export const DEFAULT_COUNTRIES = [
     'Israel', 'USA', 'France', 'Japan',
     'Spain', 'Italy', 'Germany', 'United Kingdom',
@@ -73,5 +80,8 @@ export const DEFAULT_COUNTRIES = [
 ];
 
 
-
-export const WEATHER_API_URL = "https://www.7timer.info/bin/api.pl"; // לא קשור לטעינת הערים
+/**
+ * The base URL for the weather API.
+ * @type {string}
+ */
+export const WEATHER_API_URL = "https://www.7timer.info/bin/api.pl";

@@ -1,11 +1,12 @@
-/**
- * Service for weather forecast API communication
- * API docs: https://www.7timer.info/doc.php?lang=en
- */
+
 const BASE_URL = 'https://www.7timer.info/bin/api.pl';
 
 /**
- * Fetches 7-day weather forecast by coordinates
+ * Fetches the weather forecast for a given latitude and longitude using the 7timer API.
+ * @param lat - The latitude of the location for the weather forecast.
+ * @param lon - The longitude of the location for the weather forecast.
+ * @returns {Promise<*>} - A promise that resolves to an array of weather data for the location.
+ * @throws {Error} - Throws an error if the API request fails, or the response data is in an invalid format.
  */
 export const fetchWeatherForecast = async (lat, lon) => {
     try {

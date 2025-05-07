@@ -5,6 +5,14 @@ import CityCard from '../components/cities/CityCard';
 import { useCities } from '../features/cities/cityHooks';
 import ErrorBoundary from '../components/ui/ErrorBoundary';
 
+/**
+ * Displays the page for managing a list of cities, allowing the user to add, edit, delete,
+ * and toggle favorite status of cities.
+ * @param cities - List of city objects to display
+ * @param dispatch - Function to dispatch city-related actions
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export default function CitiesPage({ cities, dispatch }) {
     const [isAdding, setIsAdding] = useState(false);
     const [editingCity, setEditingCity] = useState(null);
@@ -17,12 +25,18 @@ export default function CitiesPage({ cities, dispatch }) {
         deleteCity,
         toggleFavorite,
     } = useCities(dispatch);
-
+    /**
+     * Adds a new city to the collection.
+     * @param newCity - The city object to add
+     */
     const handleAdd = (newCity) => {
         addCity(newCity);
         setIsAdding(false);
     };
-
+    /**
+     * Updates an existing city's details.
+     * @param updatedCity - The updated city object
+     */
     const handleEdit = (updatedCity) => {
         if (!updatedCity.id && editingCity) {
             updatedCity.id = editingCity.id;
@@ -30,12 +44,18 @@ export default function CitiesPage({ cities, dispatch }) {
         editCity(updatedCity);
         setEditingCity(null);
     };
-
+    /**
+     * Deletes a city by its ID.
+     * @param id - The ID of the city to delete
+     */
     const handleDelete = (id) => {
         deleteCity(id);
         setShowDeleteModal(false);
     };
-
+    /**
+     * Opens the delete confirmation modal for a city.
+     * @param id - The ID of the city to confirm deletion
+     */
     const confirmDelete = (id) => {
         setCityToDelete(id);
         setShowDeleteModal(true);
@@ -60,7 +80,7 @@ export default function CitiesPage({ cities, dispatch }) {
                 </div>
             </div>
 
-            {/* Form sections with improved styling */}
+            {/* Form sections */}
             {isAdding && (
                 <ErrorBoundary>
                     <Card className="mb-4 shadow-sm border-primary">
@@ -114,7 +134,7 @@ export default function CitiesPage({ cities, dispatch }) {
                 </div>
             )}
 
-            {/* City grid with improved responsiveness */}
+            {/* City grid */}
             <Row xs={1} sm={2} lg={3} xl={4} className="g-4">
                 {cities.map(city => (
                     <Col key={city.id}>
@@ -132,7 +152,7 @@ export default function CitiesPage({ cities, dispatch }) {
                 ))}
             </Row>
 
-            {/* Delete confirmation modal with improved styling */}
+            {/* Delete confirmation */}
             <ErrorBoundary>
                 <Modal
                     show={showDeleteModal}

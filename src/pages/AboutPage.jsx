@@ -1,14 +1,18 @@
 import React from 'react';
 
 /**
- * About component for the weather application.
- * Displays information about the application and the submitters.
- * Uses enhanced Bootstrap styling for better visual appeal.
+ * `About` Component
  *
- * @returns {JSX.Element} The About page component
+ * Displays an informational "About" page for the Weather Forecasting Application.
+ * Includes:
+ * - A description of the application's features
+ * - Technical highlights
+ * - Contact information for the developers
+ * @returns {Element} The rendered About page.
+ * @constructor
  */
 const About = () => {
-    // Submitter information - replace with your actual information
+
     const submitters = [
         {
             name: "Sagi Seri",

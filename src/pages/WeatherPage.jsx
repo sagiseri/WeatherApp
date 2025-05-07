@@ -7,6 +7,13 @@ import WeatherDisplay from '../components/weather/WeatherDisplay';
 import CityCard from '../components/cities/CityCard';
 import { Link } from 'react-router-dom';
 
+/**
+ * WeatherPage component fetches and displays weather data for a specific city.
+ * It allows users to view the current weather and city information.
+ * @param cities - Array of city objects that includes city details like name, latitude, and longitude.
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const WeatherPage = ({ cities }) => {
     const { cityId } = useParams();
     const city = cities?.find(c => String(c.id) === cityId);
