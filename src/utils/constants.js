@@ -70,6 +70,30 @@ export const initialCities = [
     }
 ];
 /**
+ * Error configuration objects for localStorage operations
+ * @type {{LOAD: {MESSAGE: string, TITLE: string, ICON: string, VARIANT: string}, SAVE: {MESSAGE: string, TITLE: string, ICON: string, VARIANT: string}, DEFAULT: {MESSAGE: string, TITLE: string, ICON: string, VARIANT: string}}}
+ */
+export const STORAGE_ERRORS = {
+    LOAD: {
+        TITLE: "Loading Issue",
+        MESSAGE: "Couldn't load saved cities. Using default locations.",
+        ICON: "bi-cloud-download",
+        VARIANT: "warning"
+    },
+    SAVE: {
+        TITLE: "Saving Issue",
+        MESSAGE: "Changes couldn't be saved. Try again later.",
+        ICON: "bi-device-ssd",
+        VARIANT: "danger"
+    },
+    DEFAULT: {
+        TITLE: "Storage Error",
+        MESSAGE: "An unexpected error occurred.",
+        ICON: "bi-exclamation-triangle",
+        VARIANT: "danger"
+    }
+};
+/**
  * A list of default countries used for filtering cities or for display purposes.
  * @type {string[]}
  */
