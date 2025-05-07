@@ -95,7 +95,7 @@ const CityFormView = ({
                     error={errors.name}
                     placeholder="Enter city name"
                     required
-                    pattern="[a-zA-Z\u0590-\u05FF\s]+"
+                    pattern="[/^[a-zA-Z\s]+$/]"
                 />
 
                 <CountrySelect
