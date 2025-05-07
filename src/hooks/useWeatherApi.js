@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { fetchWeatherForecast } from '../utils/api/fetchWeatherForecast';
-
+import { WEATHER_FETCH_ERROR } from '../utils/constants';
 /**
  * Custom hook to fetch weather forecast data based on latitude and longitude.
  * Handles loading state, error handling, and prevents duplicate fetches.
@@ -10,7 +10,6 @@ const useWeatherApi = () => {
     const [weatherData, setWeatherData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [isFetching, setIsFetching] = useState(false);
     /**
      * Fetch weather forecast data for the given coordinates.
      * @param lat - Latitude of the location.
@@ -18,22 +17,17 @@ const useWeatherApi = () => {
      * @returns {Promise<void>}
      */
     const fetchWeather = async (lat, lon) => {
-        if (isFetching) {
-            return;
-        }
 
-        setIsFetching(true);
         setLoading(true);
         setError(null);
         try {
             const data = await fetchWeatherForecast(lat, lon);
             setWeatherData(data);
         } catch (err) {
-            setError('Failed to fetch weather data');
+            setError(WEATHER_FETCH_ERROR);
             setWeatherData(null);
         } finally {
             setLoading(false);
-            setIsFetching(false);
         }
     };
 

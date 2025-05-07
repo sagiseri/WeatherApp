@@ -1,5 +1,13 @@
 // src/features/cities/cityActions.js
-
+import {
+    SET_CITIES,
+    ADD_CITY,
+    UPDATE_CITY,
+    REMOVE_CITY,
+    TOGGLE_FAVORITE_CITY,
+    FILTER_BY_COUNTRY,
+    RESET_CITY_FILTER,
+} from '../../utils/constants';
 
 /**
  * Loads a list of cities into the state.
@@ -8,7 +16,7 @@
  */
 
 export const loadCities = (cities) => ({
-    type: 'SET_CITIES',
+    type: SET_CITIES,
     payload: cities
 });
 
@@ -18,7 +26,7 @@ export const loadCities = (cities) => ({
  * @returns {{payload: (*&{id: number, isFavorite: boolean}), type: string}} Action object with generated ID and default favorite status.
  */
 export const addCity = (cityData) => ({
-    type: 'ADD_CITY',
+    type: ADD_CITY,
     payload: {
         ...cityData,
         id: Date.now(),
@@ -32,7 +40,7 @@ export const addCity = (cityData) => ({
  * @returns {{payload, type: string}} Action object.
  */
 export const updateCity = (updatedCity) => ({
-    type: 'UPDATE_CITY',
+    type: UPDATE_CITY,
     payload: updatedCity
 });
 
@@ -42,7 +50,7 @@ export const updateCity = (updatedCity) => ({
  * @returns {{payload, type: string}} Action object.
  */
 export const removeCity = (cityId) => ({
-    type: 'REMOVE_CITY',
+    type:  REMOVE_CITY,
     payload: cityId
 });
 
@@ -52,7 +60,7 @@ export const removeCity = (cityId) => ({
  * @returns {{payload, type: string}} Action object.
  */
 export const toggleFavoriteCity = (cityId) => ({
-    type: 'TOGGLE_FAVORITE_CITY',
+    type: TOGGLE_FAVORITE_CITY,
     payload: cityId
 });
 
@@ -62,7 +70,7 @@ export const toggleFavoriteCity = (cityId) => ({
  * @returns {{payload, type: string}} Action object.
  */
 export const filterByCountry = (country) => ({
-    type: 'FILTER_BY_COUNTRY',
+    type: FILTER_BY_COUNTRY,
     payload: country
 });
 
@@ -71,7 +79,7 @@ export const filterByCountry = (country) => ({
  * @returns {{type: string}} Action object.
  */
 export const resetCityFilter = () => ({
-    type: 'RESET_CITY_FILTER'
+    type: RESET_CITY_FILTER
 });
 
 

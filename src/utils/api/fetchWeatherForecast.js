@@ -1,5 +1,5 @@
 
-const BASE_URL = 'https://www.7timer.info/bin/api.pl';
+import { WEATHER_API_URL,WEATHER_ERRORS } from '../constants';
 
 /**
  * Fetches the weather forecast for a given latitude and longitude using the 7timer API.
@@ -17,20 +17,20 @@ export const fetchWeatherForecast = async (lat, lon) => {
             output: 'json'
         });
 
-        const response = await fetch(`${BASE_URL}?${params}`);
+        const response = await fetch(`${WEATHER_API_URL}?${params}`);
 
         if (!response.ok) {
-            throw new Error(`Weather API error: ${response.status}`);
+            throw new Error(`${WEATHER_ERRORS.API_ERROR}: ${response.status}`);
         }
 
         const data = await response.json();
 
         if (!data.dataseries || !Array.isArray(data.dataseries)) {
-            throw new Error('Invalid weather data format');
+            throw new Error(WEATHER_ERRORS.INVALID_FORMAT);
         }
 
         return data.dataseries;
     } catch (error) {
-        throw new Error('Failed to load weather data. Please try again later.');
+        throw new Error(WEATHER_ERRORS.FETCH_FAILED);
     }
 };

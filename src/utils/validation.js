@@ -1,8 +1,6 @@
 // utils/validation.js
 
-
-// src/utils/validation.js
-
+import { ERROR_VALIDATE_MESSAGES } from './constants';
 /**
  * Validates if a city name contains only letters and spaces.
  * @param name - The name of the city to validate.
@@ -31,21 +29,21 @@ export const validateCityFields = (data) => {
     const errors = {};
 
     if (!data.name?.trim()) {
-        errors.name = 'City name is required';
+        errors.name = ERROR_VALIDATE_MESSAGES.REQUIRED_CITY_NAME;
     } else if (!isValidName(data.name)) {
-        errors.name = 'City name can only contain letters and spaces';
+        errors.name = ERROR_VALIDATE_MESSAGES.INVALID_CITY_NAME;
     }
 
     if (!data.country?.trim()) {
-        errors.country = 'Country is required';
+        errors.country = ERROR_VALIDATE_MESSAGES.REQUIRED_COUNTRY;
     }
 
     if (!isValidCoordinate(data.latitude, -90, 90)) {
-        errors.latitude = 'Latitude must be a number between -90 and 90';
+        errors.latitude = ERROR_VALIDATE_MESSAGES.INVALID_LATITUDE;
     }
 
     if (!isValidCoordinate(data.longitude, -180, 180)) {
-        errors.longitude = 'Longitude must be a number between -180 and 180';
+        errors.longitude = ERROR_VALIDATE_MESSAGES.INVALID_LONGITUDE;
     }
 
     return errors;
@@ -77,9 +75,9 @@ export const validateCityUniqueness = (data, cities, excludeId = null) => {
         );
     });
 
-    if (!isNameUnique) errors.name = 'A city with this name already exists';
+    if (!isNameUnique) errors.name = ERROR_VALIDATE_MESSAGES.DUPLICATE_CITY_NAME;
     if (!isLocationUnique) {
-        errors.coordinates = 'These coordinates are already in use';
+        errors.coordinates = ERROR_VALIDATE_MESSAGES.DUPLICATE_COORDINATES;
     }
 
     return errors;

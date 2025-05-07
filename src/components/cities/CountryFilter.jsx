@@ -10,7 +10,7 @@ import { Form, Button } from 'react-bootstrap';
  * @returns {JSX.Element} The rendered country filter UI.
  * @constructor
  */
-export default function CityFilter({
+export default function CountryFilter({
                                        countries,
                                        selectedCountry,
                                        onSelect,

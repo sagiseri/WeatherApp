@@ -1,5 +1,5 @@
 
-import { formatWeatherDate, getWeatherDescription } from '../../utils/api/weatherApi';
+import { formatWeatherDate, getWeatherDescription } from '../../utils/weatherUtils';
 import ErrorBoundary from '../../components/ui/ErrorBoundary';
 
 /**

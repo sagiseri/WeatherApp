@@ -1,3 +1,14 @@
+import {
+    SET_CITIES,
+    ADD_CITY,
+    UPDATE_CITY,
+    REMOVE_CITY,
+    TOGGLE_FAVORITE_CITY,
+    FILTER_BY_COUNTRY,
+    RESET_CITY_FILTER,
+    SET_CITIES_ERROR
+} from '../../utils/constants';
+
 /**
  * Initial state for the "cities" reducer.
  * @type {{cities: *[], filteredCities: *[], loading: boolean, error: null}}
@@ -41,7 +52,7 @@ const filterCitiesByCountry = (cities, country) =>
  */
 export function cityReducer(state, action) {
     switch (action.type) {
-        case 'SET_CITIES':
+        case SET_CITIES:
             return {
                 ...state,
                 cities: action.payload,
@@ -49,7 +60,7 @@ export function cityReducer(state, action) {
                 loading: false
             };
 
-        case 'ADD_CITY': {
+        case ADD_CITY: {
             const newCity = { ...action.payload, id: Date.now() };
             return {
                 ...state,
@@ -58,21 +69,21 @@ export function cityReducer(state, action) {
             };
         }
 
-        case 'UPDATE_CITY':
+        case UPDATE_CITY:
             return {
                 ...state,
                 cities: updateCityInArray(state.cities, action.payload.id, action.payload),
                 filteredCities: updateCityInArray(state.filteredCities, action.payload.id, action.payload)
             };
 
-        case 'REMOVE_CITY':
+        case REMOVE_CITY:
             return {
                 ...state,
                 cities: state.cities.filter(city => city.id !== action.payload),
                 filteredCities: state.filteredCities.filter(city => city.id !== action.payload)
             };
 
-        case 'TOGGLE_FAVORITE_CITY':
+        case TOGGLE_FAVORITE_CITY:
             return {
                 ...state,
                 cities: state.cities.map(city =>
@@ -83,16 +94,16 @@ export function cityReducer(state, action) {
                 )
             };
 
-        case 'FILTER_BY_COUNTRY':
+        case FILTER_BY_COUNTRY:
             return { ...state, filteredCities: filterCitiesByCountry(state.cities, action.payload) };
 
-        case 'RESET_CITY_FILTER':
+        case RESET_CITY_FILTER:
             return {
                 ...state,
                 filteredCities: state.cities
             };
 
-        case 'SET_CITIES_ERROR':
+        case SET_CITIES_ERROR:
             return { ...state, error: action.payload, loading: false };
 
         default:

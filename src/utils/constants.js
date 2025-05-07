@@ -84,4 +84,63 @@ export const DEFAULT_COUNTRIES = [
  * The base URL for the weather API.
  * @type {string}
  */
-export const WEATHER_API_URL = "https://www.7timer.info/bin/api.pl";
+export const WEATHER_API_URL = 'https://www.7timer.info/bin/api.pl';
+
+export const ERROR_VALIDATE_MESSAGES = {
+    REQUIRED_CITY_NAME: 'City name is required',
+    INVALID_CITY_NAME: 'City name can only contain letters and spaces',
+    REQUIRED_COUNTRY: 'Country is required',
+    INVALID_LATITUDE: 'Latitude must be a number between -90 and 90',
+    INVALID_LONGITUDE: 'Longitude must be a number between -180 and 180',
+    DUPLICATE_CITY_NAME: 'A city with this name already exists',
+    DUPLICATE_COORDINATES: 'These coordinates are already in use',
+};
+
+export const WEATHER_ERRORS = {
+    API_ERROR: 'Weather API error',
+    INVALID_FORMAT: 'Invalid weather data format',
+    FETCH_FAILED: 'Failed to load weather data. Please try again later.'
+};
+
+export const WEATHER_CODE_DESCRIPTIONS = {
+    'clear': 'Clear',
+    'pcloudy': 'Partly cloudy',
+    'mcloudy': 'Mostly cloudy',
+    'cloudy': 'Cloudy',
+    'humid': 'Humid',
+    'lightrain': 'Light rain',
+    'oshower': 'Occasional showers',
+    'ishower': 'Isolated showers',
+    'lightsnow': 'Light snow',
+    'rain': 'Rain',
+    'snow': 'Snow',
+    'rainsnow': 'Rain and snow',
+    'ts': 'Thunderstorm',
+    'tsrain': 'Thunderstorm with rain'
+};
+export const SUBMITTERS = [
+    {
+        name: "Sagi Seri",
+        email: "sagise@edu.jmc.ac.il"
+    },
+    {
+        name: "Malka Grafstein",
+        email: "malkagra@edu.jmc.ac.il"
+    }
+];
+
+export const WEATHER_FETCH_ERROR = 'Failed to fetch weather data';
+
+export const ERROR_LOAD_CITIES = 'Failed to load cities:';
+export const ERROR_STAGE_LOAD = 'load';
+export const ERROR_STAGE_SAVE = 'save';
+
+// בקובץ constants.js או actionTypes.js
+export const SET_CITIES = 'SET_CITIES';
+export const ADD_CITY = 'ADD_CITY';
+export const UPDATE_CITY = 'UPDATE_CITY';
+export const REMOVE_CITY = 'REMOVE_CITY';
+export const TOGGLE_FAVORITE_CITY = 'TOGGLE_FAVORITE_CITY';
+export const FILTER_BY_COUNTRY = 'FILTER_BY_COUNTRY';
+export const RESET_CITY_FILTER = 'RESET_CITY_FILTER';
+export const SET_CITIES_ERROR = 'SET_CITIES_ERROR';

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { initialCities } from '../utils/constants';
+import { initialCities, ERROR_LOAD_CITIES, ERROR_STAGE_LOAD, ERROR_STAGE_SAVE  } from '../utils/constants';
 import { loadCities} from '../features/cities/cityActions';
 
 /**
@@ -33,10 +33,10 @@ export const useLocalStorage = (key, value, dispatch, onError) => {
                 localStorage.setItem(key, JSON.stringify(initialCities));
             }
         } catch (error) {
-            console.error('Failed to load cities:', error);
+            console.error(ERROR_LOAD_CITIES, error);
             dispatch(loadCities(initialCities));
 
-            if (onError) onError(error, 'load');
+            if (onError) onError(error, ERROR_STAGE_LOAD);
         } finally {
             setInitialized(true);
         }
@@ -47,7 +47,7 @@ export const useLocalStorage = (key, value, dispatch, onError) => {
         try {
             localStorage.setItem(key, JSON.stringify(value));
         } catch (error) {
-            if (onError) onError(error, 'save');
+            if (onError) onError(error, ERROR_STAGE_SAVE);
         }
     }, [key, value, onError]);
 };

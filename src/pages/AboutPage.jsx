@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { SUBMITTERS } from '../utils/constants'
 /**
  * `About` Component
  *
@@ -12,17 +12,6 @@ import React from 'react';
  * @constructor
  */
 const About = () => {
-
-    const submitters = [
-        {
-            name: "Sagi Seri",
-            email: "sagise@edu.jmc.ac.il"
-        },
-        {
-            name: "Malka Grafstein",
-            email: "malkagra@edu.jmc.ac.il"
-        }
-    ];
 
     return (
         <div className="container py-5">
@@ -89,7 +78,7 @@ const About = () => {
                 <div className="col-lg-8">
                     <h2 className="text-center fw-bold text-primary mb-4">Development Team</h2>
                     <div className="row">
-                        {submitters.map((submitter, index) => (
+                        {SUBMITTERS.map((submitter, index) => (
                             <div key={index} className="col-md-6 mb-4">
                                 <div className="card h-100 border-0 rounded-3 bg-light">
                                     <div className="card-header bg-primary text-white text-center py-3">

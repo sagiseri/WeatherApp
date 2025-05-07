@@ -1,3 +1,4 @@
+import { WEATHER_CODE_DESCRIPTIONS } from './constants';
 /**
  * Formats a date string from the weather API into a human-readable date format (DD/MM/YYYY).
  * @param apiDate - The date string from the API, in the format YYYYMMDD.
@@ -14,22 +15,5 @@ export const formatWeatherDate = (apiDate) => {
  * @returns {*} - A human-readable description of the weather
  */
 export const getWeatherDescription = (weatherCode) => {
-    const descriptions = {
-        'clear': 'Clear',
-        'pcloudy': 'Partly cloudy',
-        'mcloudy': 'Mostly cloudy',
-        'cloudy': 'Cloudy',
-        'humid': 'Humid',
-        'lightrain': 'Light rain',
-        'oshower': 'Occasional showers',
-        'ishower': 'Isolated showers',
-        'lightsnow': 'Light snow',
-        'rain': 'Rain',
-        'snow': 'Snow',
-        'rainsnow': 'Rain and snow',
-        'ts': 'Thunderstorm',
-        'tsrain': 'Thunderstorm with rain'
-    };
-
-    return descriptions[weatherCode] || weatherCode;
+    return WEATHER_CODE_DESCRIPTIONS[weatherCode] || weatherCode;
 };

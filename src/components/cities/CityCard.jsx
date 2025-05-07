@@ -24,13 +24,13 @@ export default function CityCard({
     return (
         <Card className="h-100 shadow-sm">
             <Card.Body>
-                <Card.Title>{city.name}</Card.Title>
+                <Card.Title><strong>City:</strong> {city.name}</Card.Title>
                 <Card.Text>
-                    <strong>Country:</strong> {city.country}<br />
+                    <strong>Country:</strong> {city.country}<br/>
 
                     {showEditDelete && (
                         <>
-                            <strong>Coordinates:</strong> {city.latitude}, {city.longitude}<br />
+                            <strong>Coordinates:</strong> {city.latitude}, {city.longitude}<br/>
                             <strong>Favorite:</strong> {city.isFavorite ? 'Yes' : 'No'}
                         </>
                     )}

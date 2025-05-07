@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import CityCard from '../components/cities/CityCard';
-import CityFilter from '../components/cities/CityFilter';
+import CountryFilter from '../components/cities/CountryFilter';
 import Spinner from '../components/ui/Spinner';
 import { Link } from 'react-router-dom';
 import { useCities } from '../features/cities/cityHooks';
@@ -43,7 +43,7 @@ export default function HomePage({ cities, loading, dispatch }) {
 
             <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
                 <div className="flex-grow-1">
-                    <CityFilter
+                    <CountryFilter
                         countries={[...new Set(cities.map(c => c.country))]}
                         selectedCountry={selectedCountry}
                         onSelect={setSelectedCountry}
