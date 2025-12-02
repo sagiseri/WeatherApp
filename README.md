@@ -56,18 +56,39 @@ The app integrates with the **7timer API** to fetch accurate and up-to-date weat
   },
   "wind10m_max": 3
 }
-
+```
 ### 6. API Endpoint
 - Weather data is retrieved from:
+
 ```bash
 https://www.7timer.info/bin/api.pl?lon=35.213618&lat=31.771959&product=civillight&output=json
+```
 
 ### 7. Country Selection
 - Users can select a country, and the app will display weather information for cities within that country.
 
 ## ⚙️ Installation
 
-1. **Clone the repository**
-```bash
-git clone https://github.com/yourusername/WeatherApp.git
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/yourusername/WeatherApp.git
+    ```
+
+2. Install dependencies:
+    ```bash
+    npm install
+    ```
+
+3. Start the development server:
+    ```bash
+    npm start
+    ```
+
+## 🛠️ Technologies Used
+
+- **React** – Frontend framework  
+- **JavaScript (ES6+)** – Application logic  
+- **7timer API** – Weather data  
+- **CSS / HTML** – Styling and layout  
+
 
