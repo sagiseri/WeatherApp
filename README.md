@@ -1,70 +1,73 @@
-<h1>student information:</h1>
-Sagi Seri sagise@edu.jmc.ac.il<br>
-Malka Grafstein malkagra@edu.jmc.ac.il<br>
-one of the members was in miluim for a week of the assignment.
+# ![Weather](https://img.shields.io/badge/WeatherApp-React-blue) WeatherApp
 
-# WeatherApp
+## 👨‍🎓 Student Information
 
-## Description
-WeatherApp is a weather information app built with React that allows users to search for cities and retrieve real-time weather data. The app integrates a weather API to display weather conditions, temperature (min and max), wind speed, and more.
+| Name | Email | Notes |
+|------|-------|-------|
+| Sagi Seri | [sagise@edu.jmc.ac.il](mailto:sagise@edu.jmc.ac.il) | – |
+| Malka Grafstein | [malkagra@edu.jmc.ac.il](mailto:malkagra@edu.jmc.ac.il) | – |
 
-## Features
+> **Note:** One of the team members was on *miluim* (reserve duty) for one week during the assignment.
 
-1. **City Search**:
-    - Users can search for cities, and the app will display the weather details for the selected city.
-    - The app uses a dropdown to select the city.
-    - Displays data such as weather, max and min temperature, wind speed, etc.
+---
 
-2. **Weather Data Display**:
-    - Displays weather data like:
-        - Weather conditions (e.g., cloudy, sunny).
-        - Minimum and maximum temperature.
-        - Wind speed.
-        - Date in `DD/MM/YYYY` format.
+## 📝 Description
+**WeatherApp** is a **React-based application** that provides real-time weather information for cities worldwide. Users can search for cities, select countries, and view detailed weather data, including:  
+- Temperature (min & max)  
+- Weather conditions (sunny, cloudy, etc.)  
+- Wind speed  
+- Date (in `DD/MM/YYYY` format)  
 
-3. **Reset Functionality**:
-    - Reset button that clears all input fields.
+The app integrates with the **7timer API** to fetch accurate and up-to-date weather information.
 
-4. **Dropdown Menu**:
-    - A dropdown allows the user to select cities from a predefined list.
+---
 
-5. **API Integration**:
-    - Fetches data from a weather API:
-    - Sample API Response:
-      ```json
-      {
-        "date": 20250424,
-        "weather": "cloudy",
-        "temp2m": {
-          "max": 30,
-          "min": 18
-        },
-        "wind10m_max": 3
-      }
-      ```
+## ⚡ Features
 
-6. **API Endpoint**:
-    - The weather data is fetched from the `7timer` API at:
-    ```bash
-    https://www.7timer.info/bin/api.pl?lon=35.213618&lat=31.771959&product=civillight&output=json
-    ```
+### 1. City Search
+- Search for cities and view their current weather.
+- Dropdown menu for quick city selection.
+- Displays key weather metrics (condition, temperature, wind, date).
 
-7. **Country Information**:
-    - The app allows users to choose a country, and based on the selected country, the corresponding weather information is shown.
+### 2. Weather Data Display
+- Clear and readable weather information.
+- Includes:
+  - Weather condition (e.g., cloudy, sunny)
+  - Minimum and maximum temperature
+  - Wind speed
+  - Date in `DD/MM/YYYY` format
 
-## Installation
+### 3. Reset Functionality
+- Reset button clears all input fields instantly.
 
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/yourusername/WeatherApp.git
-    ```
+### 4. Dropdown Menu
+- Predefined list of cities for easy selection.
 
-2. Install dependencies:
-    ```bash
-    npm install
-    ```
+### 5. API Integration
+- Fetches data from the **7timer API**.  
+- Example API response:
+```json
+{
+  "date": 20250424,
+  "weather": "cloudy",
+  "temp2m": {
+    "max": 30,
+    "min": 18
+  },
+  "wind10m_max": 3
+}
 
-3. Start the development server:
-    ```bash
-    npm start
-    ```
+### 6. API Endpoint
+- Weather data is retrieved from:
+```bash
+https://www.7timer.info/bin/api.pl?lon=35.213618&lat=31.771959&product=civillight&output=json
+
+### 7. Country Selection
+- Users can select a country, and the app will display weather information for cities within that country.
+
+## ⚙️ Installation
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/yourusername/WeatherApp.git
+
